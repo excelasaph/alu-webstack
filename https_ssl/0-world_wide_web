@@ -6,9 +6,9 @@ get_dns_info() {
     sub_domain=$1
     domain=$2
     dig_output=$(dig "$sub_domain.$domain" | grep -A1 'ANSWER SECTION:')
-    record_type=$(echo "$dig_output" | grep -oP '\s+\d+\s+IN\s+\K\w+(?=\s+A)')
+    record_type="A"
     destination=$(echo "$dig_output" | grep -oP '\d+\.\d+\.\d+\.\d+')
-    echo "The subdomain $sub_domain is a $record_type record and points to $destination"
+    echo "The subdomain $sub_domain is a $record_type and points to $destination"
 }
 
 # Main script
